@@ -28,8 +28,8 @@
 
 - name: copy truststore and keystore to the config directory
   copy:
-    src: "{{ playbook_dir }}/tls/certs"
+    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
     dest: "{{ kafka_etc_dir }}"
   with_items:
-    - broker-server.keystore.jks
-    - truststore.jks
+    - "broker-server.keystore.jks"
+    - "truststore.jks"
