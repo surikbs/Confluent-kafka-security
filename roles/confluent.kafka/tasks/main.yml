@@ -30,6 +30,6 @@
   copy:
     src: "{{ playbook_dir }}/tls/certs"
     dest: "{{ kafka_etc_dir }}"
-  withitems:
+  with_items:
     - broker-server.keystore.jks
     - truststore.jks
