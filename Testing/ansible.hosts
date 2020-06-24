@@ -1,0 +1,9 @@
+[all:vars]
+confluent_user=vcs_kafka
+confluent_home="/home/vcs_kafka"
+
+[zk]
+192.168.104.5
+
+[kafka]
+192.168.104.4
