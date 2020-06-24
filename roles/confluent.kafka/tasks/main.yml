@@ -25,3 +25,10 @@
     mode: 0400
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
+
+- name: copy truststore and keystore to the config directory
+  copy:
+    src: "{{ playbook_dir }}/tls/certs"
+    dest: "{{ kafka_etc_dir }}"
+  withitems:
+    - broker-server.
