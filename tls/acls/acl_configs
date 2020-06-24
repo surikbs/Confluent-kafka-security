@@ -1,0 +1,7 @@
+ ../../bin/kafka-acls --bootstrap-server kafkabroker1:9093 --command-config ssl.properties --add  --allow-principal "User:CN=student,L=Bangalore,O=Confluent,C=IN"  --operation Read  --topic test
+
+../../bin/kafka-acls --bootstrap-server kafkabroker1:9093 --command-config ssl.properties --add  --allow-principal "User:CN=student,L=Bangalore,O=Confluent,C=IN"  --operation Describe  --topic test
+
+../../bin/kafka-acls --bootstrap-server kafkabroker1:9093 --command-config ssl.properties --add  --allow-principal "User:CN=student,L=Bangalore,O=Confluent,C=IN"  --operation Read --group 'console-ssl-read'  --topic test
+
+../../bin/kafka-acls --bootstrap-server kafkabroker1:9093 --command-config ssl.properties --list
