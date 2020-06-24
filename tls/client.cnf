@@ -26,4 +26,4 @@ extendedKeyUsage = clientAuth
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1=kafka.confluent.local
+DNS.1=student
