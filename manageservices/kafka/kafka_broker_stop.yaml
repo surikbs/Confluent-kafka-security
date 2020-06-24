@@ -9,6 +9,12 @@
          kill -s TERM $PID
          while kill -0 "$PID" >/dev/null 2>&1; do sleep 1; done
         done
+        if [ $(ps ax | grep -i 'io\.confluent\.support\.metrics\.SupportedKafka' | grep java | grep -v grep | wc -l) -gt 0 ]
+        then
+          echo Kafka Running
+        else
+          echo Kafka Not Running
+        fi
       register: shell_out
     - debug:
         var: shell_out.stdout
