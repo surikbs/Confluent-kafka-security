@@ -33,3 +33,4 @@
   with_items:
     - "broker-server.keystore.jks"
     - "truststore.jks"
+    - "zookeeper.keystore.jks"
