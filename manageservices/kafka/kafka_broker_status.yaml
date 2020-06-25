@@ -6,7 +6,7 @@
       shell: |
         if [ $(ps ax | grep -i 'io\.confluent\.support\.metrics\.SupportedKafka' | grep java | grep -v grep | wc -l) -gt 0 ]
         then
-          echo Kafka Running
+          echo Kafka is in Running state
         else
           echo Kafka Not Running
         fi

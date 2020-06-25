@@ -7,10 +7,16 @@
   tasks:
     - name: Starting kafka Broker
       shell: |
-        export KAFKA_HEAP_OPTS="-Xmx1000M"
-        export LOG_DIR={{ kafka_log_dir }}
-        export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_etc_dir }}/log4j.properties"
-        {{ kafka_bin_dir }}/kafka-server-start -daemon {{ kafka_etc_dir }}/server.properties
+        if [ $(ps ax | grep -i 'io\.confluent\.support\.metrics\.SupportedKafka' | grep java | grep -v grep | wc -l) -gt 0 ]
+        then
+          echo Kafka is in Running state.
+        else
+          echo Kafka Not Running. !! Hence Starting it.
+          export KAFKA_HEAP_OPTS="-Xmx1000M"
+          export LOG_DIR={{ kafka_log_dir }}
+          export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_etc_dir }}/log4j.properties"
+          {{ kafka_bin_dir }}/kafka-server-start -daemon {{ kafka_etc_dir }}/server.properties
+        fi
       register: shell_out
     - debug:
         var: shell_out

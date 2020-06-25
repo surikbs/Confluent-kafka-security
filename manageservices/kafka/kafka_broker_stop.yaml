@@ -6,7 +6,7 @@
       shell: | 
         if [ $(ps ax | grep -i 'io\.confluent\.support\.metrics\.SupportedKafka' | grep java | grep -v grep | wc -l) -gt 0 ]
         then
-          echo Kafka Running
+          echo Kafka Running !! Hence stopping it.
             CPIDS=$(ps ax | grep -i 'io\.confluent\.support\.metrics\.SupportedKafka' | grep java | grep -v grep | awk '{print $1}')
             for PID in $CPIDS; do
               kill -s TERM $PID
