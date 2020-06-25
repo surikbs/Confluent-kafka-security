@@ -16,3 +16,15 @@ leaderServes=yes
 {% for host in groups['zookeeper'] %}
 server.{{ hostvars[host]['zookeeper_id'] | default(groups.zookeeper.index(host) + 1)}}={{ host }}:2888:3888
 {% endfor %}
+
+########## SSL Config ########
+
+secureClientPort={{ zk_ssl_port }}
+serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+authProvider.x509=org.apache.zookeeper.server.auth.X509AuthenticationProvider
+ssl.keyStore.location={{ zk_etc_dir }}/zookeeper.keystore.jks
+ssl.keyStore.password=test1234
+ssl.trustStore.location={{ zk_etc_dir }}/truststore.jks
+ssl.trustStore.password=test1234
+ssl.clientAuth=want
+#############################

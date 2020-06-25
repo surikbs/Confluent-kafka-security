@@ -16,6 +16,7 @@ confluent_data_dir: "{{ confluent_appdir }}/dataDir"
 
 zookeeper:
 zk_port: 2181
+zk_ssl_port: 2182
 zk_user: vcs_kafka
 zk_group: vcs_kafka
 zk_bin_dir: "{{ confluent_appdir }}/bin"
