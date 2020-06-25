@@ -72,10 +72,10 @@ zookeeper.ssl.client.enable=true
 # Required to use TLS to ZooKeeper
 zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
 # Define key/trust stores to use TLS to ZooKeeper; ignored unless zookeeper.ssl.client.enable=true
-ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
-ssl.truststore.password=test1234
-ssl.keystore.location={{ kafka_etc_dir }}/zookeeper.keystore.jks
-ssl.keystore.password=test1234
+zookeeper.ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
+zookeeper.ssl.truststore.password=test1234
+zookeeper.ssl.keystore.location={{ kafka_etc_dir }}/zookeeper.keystore.jks
+zookeeper.ssl.keystore.password=test1234
 
 ##################### Confluent Metrics Reporter ###############################
 
