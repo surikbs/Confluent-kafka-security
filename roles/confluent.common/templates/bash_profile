@@ -1,0 +1,3 @@
+export CONFLUENT_HOME=/opt/vcs/kafka/confluent/
+export CONFLUENT_CLI=$CONFLUENT_HOME/bundles/confluent/
+PATH="$PATH:$CONFLUENT_HOME/bin:$CONFLUENT_CLI:$PATH"
