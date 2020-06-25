@@ -21,3 +21,15 @@
     src: "/tmp/{{ confluent_cli_package_name }}"
     dest: "{{ confluent_appdir }}/bundles/{{ confluent_cli_package_name }}"
   when: confluent_cli_bundle_status.stat.exists == false
+
+- name: checking if the cli bundle is extracted in confluent bundle directory
+  stat: 
+     path: "{{ confluent_appdir }}/bundles/confluent"
+  register: confluent_cli_bundle_extract_status
+
+- name: Extracting the tar ball to bundles location 
+  unarchive:
+    src: "{{ confluent_appdir }}/bundles/{{ confluent_cli_package_name }}"
+    dest: "{{ confluent_appdir }}/bundles/"
+    remote_src: yes
+  when: confluent_cli_bundle_extract_status.stat.exists == false
