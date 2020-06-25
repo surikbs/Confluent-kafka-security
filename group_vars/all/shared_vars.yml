@@ -48,3 +48,11 @@ ksql_bin_dir: "{{ confluent_appdir }}/bin"
 ksql_etc_dir: "{{ confluent_etc_dir }}/ksql"
 ksql_log_dir: "{{ confluent_log_dir }}/ksql"
 ksql_data_dir: "{{ confluent_data_dir }}/ksql"
+
+confluent_cli:
+confluent_cli_user: vcs_kafka
+confluent_cli_group: vcs_kafka
+confluent_cli_url: "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/latest/confluent_latest_linux_amd64.tar.gz"
+confluent_cli_package_name: confluent_latest_linux_amd64.tar.gz
+confluent_cli_bundle: "{{ confluent_home }}/bundles"
+confluent_cli_bin: "{{ confluent_home }}/bin"
