@@ -1,0 +1,13 @@
+- name: confluent control center create directories
+  file:
+    state: directory
+    path: "{{ item }}"
+    mode: 0750
+    owner: "{{ c3_user }}"
+    group: "{{ c3_group }}"
+  with_items:
+    - "{{ c3_etc_dir }}"
+    - "{{ c3_data_dir }}"
+    - "{{ c3_log_dir }}"
+    - "{{ c3_data_dir }}"
+
