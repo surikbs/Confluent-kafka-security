@@ -9,3 +9,28 @@
     - "{{ c3_etc_dir }}"
     - "{{ c3_data_dir }}"
     - "{{ c3_log_dir }}"
+
+- name: Create c3 broker configs
+  template:
+    src: control-center.properties.j2
+    dest: "{{ c3_etc_dir }}/control-center.properties"
+    mode: 0400
+    owner: "{{ c3_user }}"
+    group: "{{ c3_group }}"
+
+- name: Copy Log4j Properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ c3_etc_dir }}/log4j.properties"
+    mode: 0400
+    owner: "{{ c3_user }}"
+    group: "{{ c3_group }}"
+
+- name: copy truststore and keystore to the config directory
+  copy:
+    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
+    dest: "{{ c3_etc_dir }}"
+  with_items:
+    - "broker-server.keystore.jks"
+    - "truststore.jks"
+    - "zookeeper.keystore.jks"
