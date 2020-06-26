@@ -9,5 +9,3 @@
     - "{{ c3_etc_dir }}"
     - "{{ c3_data_dir }}"
     - "{{ c3_log_dir }}"
-    - "{{ c3_data_dir }}"
-
