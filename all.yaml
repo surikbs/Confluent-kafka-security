@@ -51,3 +51,12 @@
   tasks:
   - import_role:
       name: confluent.cli
+
+- name: Confluent CLI provisioning
+  hosts: c3
+  gather_facts: no
+  tags:
+    - c3
+  tasks:
+  - import_role:
+      name: confluent.control.center
