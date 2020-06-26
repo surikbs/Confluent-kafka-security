@@ -1,0 +1,7 @@
+ 
+ #Create Master key
+ confluent secret  master-key generate --local-secrets-file secrets.properties --passphrase passphrase.txt
+
+
+  confluent secret file add --config-file /opt/vcs/kafka/confluent/etc/zk/zookeeper.properties --local-secrets-file /opt/vcs/kafka/confluent/bundles/confluent/secrets.properties --config ssl.keyStore.password=test1234 --remote-secrets-file /opt/vcs/kafka/confluent/bundles/confluent/secrets.properties
+  
