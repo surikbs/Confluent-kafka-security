@@ -80,7 +80,7 @@ zookeeper.ssl.keystore.password=test1234
 
 ##################### Confluent Metrics Reporter ###############################
 
-#etric.reporters=io.confluent.metrics.reporter.ConfluentMetricsReporter
+metric.reporters=io.confluent.metrics.reporter.ConfluentMetricsReporter
 confluent.metrics.reporter.bootstrap.servers={% for host in groups['kafka_broker'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ kafka_ssl_port }}{% endfor %}
 
 confluent.metrics.reporter.zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
