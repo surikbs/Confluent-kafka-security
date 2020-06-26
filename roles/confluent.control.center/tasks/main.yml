@@ -9,6 +9,7 @@
     - "{{ c3_etc_dir }}"
     - "{{ c3_data_dir }}"
     - "{{ c3_log_dir }}"
+    - "{{ c3_temp_dir }}"
 
 - name: Create c3 broker configs
   template:

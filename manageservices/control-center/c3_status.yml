@@ -1,0 +1,20 @@
+---
+
+- hosts:
+    - c3
+  name: Start Control Center
+  serial: 1
+  tasks:
+    - name: Starting Control Center
+      shell: |
+        if [ $(ps aux | grep -i 'io\.confluent\.controlcenter\.ControlCenter' | grep java | grep -v grep | wc -l) -eq 0 ]; then
+                  echo -e "confluent control center is not running"
+          else
+                    PID=`ps aux | grep -i 'io\.confluent\.controlcenter\.ControlCenter' | grep java | grep -v grep | awk '{print $2}'`
+                    echo "confluent control center is already running with $PID"
+        fi
+      register: shell_out
+    - debug:
+        var: shell_out
+
+...

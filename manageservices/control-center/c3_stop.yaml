@@ -1,0 +1,24 @@
+---
+
+- hosts:
+    - c3
+  name: Start Control Center
+  serial: 1
+  tasks:
+    - name: Starting Control Center
+      shell: |
+        if [ $(ps aux | grep -i 'io\.confluent\.controlcenter\.ControlCenter' | grep java | grep -v grep | wc -l) -eq 0 ]; then
+                  echo -e "confluent control center is not running"
+          else
+                  echo -e "Stopping confluent control center"
+                  C3PID=`ps aux | grep -i 'io\.confluent\.controlcenter\.ControlCenter' | grep java | grep -v grep | awk '{print $2}'`
+                  for PID in $C3PID ; do
+                          kill -s TERM $PID
+                          while kill -0 "$PID" >/dev/null 2>&1; do sleep 1; done
+                  done
+          fi
+      register: shell_out
+    - debug:
+        var: shell_out
+
+...
