@@ -28,10 +28,10 @@ ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
 ssl.truststore.password=test1234
 ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
 ssl.keystore.password=test1234
-ssl.client.auth=required
+#ssl.client.auth=required
 authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
-#super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
-super.users=User:ANONYMOUS
+super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
+#super.users=User:ANONYMOUS
 
 ############################# Socket Server Settings ###########################
 
