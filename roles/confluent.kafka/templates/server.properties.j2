@@ -33,8 +33,8 @@ ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
 ssl.keystore.password=test1234
 ssl.client.auth=required
 zookeeper.set.acl = true
-#authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
-#super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
+authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
+super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
 #super.users=User:ANONYMOUS
 
 ############################# Socket Server Settings ###########################
