@@ -8,8 +8,11 @@ ldap.authorizer.license={{ confluent_license }}
 
 broker.id={{ broker_id | default(groups.kafka_broker.index(inventory_hostname) + 1)}}
 
-listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
-advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
+listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
+advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
+
+#listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
+#advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 #broker.rack=rack-a
 delete.topic.enable=true
 unclean.leader.election.enable=true
@@ -23,14 +26,14 @@ replica.fetch.max.bytes=1048576
 #listeners=SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 #advertised.listeners=SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 
-security.inter.broker.protocol=SSL
-ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
-ssl.truststore.password=test1234
-ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
-ssl.keystore.password=test1234
+#security.inter.broker.protocol=SSL
+#ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
+#ssl.truststore.password=test1234
+#ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
+#ssl.keystore.password=test1234
 #ssl.client.auth=required
-authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
-super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
+#authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
+#super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
 #super.users=User:ANONYMOUS
 
 ############################# Socket Server Settings ###########################
@@ -62,39 +65,39 @@ log.cleaner.backoff.ms=15000
 
 ############################# Zookeeper ########################################
 
-#zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_port }}{% endfor %}
+zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_port }}{% endfor %}
 
 ########################### Zookeeper TLS ######################################
 
 
-zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
-
-# Required to use TLS to ZooKeeper (default is false)
-zookeeper.ssl.client.enable=true
-# Required to use TLS to ZooKeeper
-zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
-# Define key/trust stores to use TLS to ZooKeeper; ignored unless zookeeper.ssl.client.enable=true
-zookeeper.ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
-zookeeper.ssl.truststore.password=test1234
-zookeeper.ssl.keystore.location={{ kafka_etc_dir }}/zookeeper.keystore.jks
-zookeeper.ssl.keystore.password=test1234
+#zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
+#
+## Required to use TLS to ZooKeeper (default is false)
+#zookeeper.ssl.client.enable=true
+## Required to use TLS to ZooKeeper
+#zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
+## Define key/trust stores to use TLS to ZooKeeper; ignored unless zookeeper.ssl.client.enable=true
+#zookeeper.ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
+#zookeeper.ssl.truststore.password=test1234
+#zookeeper.ssl.keystore.location={{ kafka_etc_dir }}/zookeeper.keystore.jks
+#zookeeper.ssl.keystore.password=test1234
 
 ##################### Confluent Metrics Reporter ###############################
 
 metric.reporters=io.confluent.metrics.reporter.ConfluentMetricsReporter
-confluent.metrics.reporter.bootstrap.servers={% for host in groups['kafka_broker'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ kafka_ssl_port }}{% endfor %}
+confluent.metrics.reporter.bootstrap.servers={% for host in groups['kafka_broker'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ kafka_port }}{% endfor %}
 
-confluent.metrics.reporter.zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
+confluent.metrics.reporter.zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_port }}{% endfor %}
 
 # Uncomment the following line if the metrics cluster has a single broker
 #confluent.metrics.reporter.topic.replicas=1
 
-confluent.metrics.reporter.security.protocol=SSL
-confluent.metrics.reporter.ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
-confluent.metrics.reporter.ssl.truststore.password=test1234
-confluent.metrics.reporter.ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
-confluent.metrics.reporter.ssl.keystore.password=test1234
-confluent.metrics.reporter.ssl.key.password=test1234
+#confluent.metrics.reporter.security.protocol=SSL
+#confluent.metrics.reporter.ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
+#confluent.metrics.reporter.ssl.truststore.password=test1234
+#confluent.metrics.reporter.ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
+#confluent.metrics.reporter.ssl.keystore.password=test1234
+#confluent.metrics.reporter.ssl.key.password=test1234
 
 ##################### Confluent Proactive Support ##############################
 confluent.support.metrics.enable=false
