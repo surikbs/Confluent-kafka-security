@@ -26,7 +26,7 @@ replica.fetch.max.bytes=1048576
 #listeners=SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 #advertised.listeners=SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 
-#security.inter.broker.protocol=SSL
+security.inter.broker.protocol=SSL
 ssl.truststore.location={{ kafka_etc_dir }}/truststore.jks
 ssl.truststore.password=test1234
 ssl.keystore.location={{ kafka_etc_dir }}/broker-server.keystore.jks
@@ -34,8 +34,7 @@ ssl.keystore.password=test1234
 ssl.client.auth=required
 zookeeper.set.acl=true
 authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
-super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN
-#User:ANONYMOUS;
+super.users=User:CN=kafka.confluent.local,L=Bangalore,O=Confluent,C=IN;User:ANONYMOUS
 #allow.everyone.if.no.acl.found=true
 #super.users=User:ANONYMOUS
 
