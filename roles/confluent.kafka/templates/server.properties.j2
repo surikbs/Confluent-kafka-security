@@ -65,12 +65,12 @@ log.cleaner.backoff.ms=15000
 
 ############################# Zookeeper ########################################
 
-zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_port }}{% endfor %}
+#zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_port }}{% endfor %}
 
 ########################### Zookeeper TLS ######################################
 
 
-#zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
+zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}:{{ zk_ssl_port }}{% endfor %}
 #
 ## Required to use TLS to ZooKeeper (default is false)
 #zookeeper.ssl.client.enable=true
