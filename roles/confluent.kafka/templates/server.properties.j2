@@ -8,11 +8,11 @@ ldap.authorizer.license={{ confluent_license }}
 
 broker.id={{ broker_id | default(groups.kafka_broker.index(inventory_hostname) + 1)}}
 
-listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
-advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
+#listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
+#advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }}
 
-#listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
-#advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
+listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
+advertised.listeners=PLAINTEXT://{{ inventory_hostname }}:{{ kafka_port }},SSL://{{ inventory_hostname }}:{{ kafka_ssl_port }}
 #broker.rack=rack-a
 delete.topic.enable=true
 unclean.leader.election.enable=true
