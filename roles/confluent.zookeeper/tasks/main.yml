@@ -45,11 +45,19 @@
 
 - name: checking if the prometheus_java_agent_url is in etc directory
   stat: 
-     path: "{{ zk_etc_dir }}/jmx_prometheus_javaagent-0.13.0.jar"
+     path: "{{ zk_etc_dir }}/{{ java_agent_jar }}"
   register: prometheus_java_agent_download
 
 - name: copy the confluent etc to the location on remote machine
   copy:
-    src: "/tmp/jmx_prometheus_javaagent-0.13.0.jar"
+    src: "/tmp/{{ java_agent_jar }}"
     dest: "{{ zk_etc_dir }}"
   when: confluent_bundle_status.stat.exists == false
+
+- name: Deploy JMX Exporter Config File
+  copy:
+    src: "zookeeper.yml"
+    dest: "{{ zk_etc_dir }}"
+    mode: 0640
+    owner: "{{ zk_user }}"
+    group: "{{ zk_group }}"

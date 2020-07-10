@@ -12,10 +12,10 @@
           echo Zookeeper Running
         else
           echo Zookeeper Not Running. So starting Zookeeper
-        export KAFKA_HEAP_OPTS="-Xmx1000M"
-        export LOG_DIR={{ zk_log_dir }}
-        {{ zk_bin_dir }}/zookeeper-server-start -daemon {{ zk_etc_dir }}/zookeeper.properties
-
+          export KAFKA_HEAP_OPTS="-Xmx1000M"
+          export LOG_DIR={{ zk_log_dir }}
+          export KAFKA_JMX_OPTS="-javaagent:{{ zk_etc_dir }}/{{ java_agent_jar }}=9102:{{ zk_etc_dir }}/zookeeper.yml"
+          {{ zk_bin_dir }}/zookeeper-server-start -daemon {{ zk_etc_dir }}/zookeeper.properties
         fi
       register: shell_out
     - debug:

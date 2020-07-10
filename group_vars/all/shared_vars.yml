@@ -8,7 +8,8 @@ confluent_tar_version: confluent-5.5.0-2.12
 confluent_version: confluent-5.5.0
 confluent_bundle_path: "{{ confluent_home }}/bundles/{{ confluent_version }}"
 tar_location: "/home/kafkaadmin2/"
-prometheus_java_agent: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.13.0/jmx_prometheus_javaagent-0.13.0.jar
+prometheus_java_agent_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.13.0/jmx_prometheus_javaagent-0.13.0.jar
+java_agent_jar: jmx_prometheus_javaagent-0.13.0.jar
 prometheus_package_url:
 grafana_package_url:
 

@@ -14,6 +14,7 @@
           echo Kafka Not Running. !! Hence Starting it.
           export KAFKA_HEAP_OPTS="-Xmx1000M"
           export LOG_DIR={{ kafka_log_dir }}
+          export KAFKA_JMX_OPTS="-javaagent:{{ kafka_etc_dir }}/{{ java_agent_jar }}=9102:{{ kafka_etc_dir }}/kafka.yml"
           export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_etc_dir }}/log4j.properties"
           {{ kafka_bin_dir }}/kafka-server-start -daemon {{ kafka_etc_dir }}/server.properties
         fi
