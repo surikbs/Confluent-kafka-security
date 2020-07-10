@@ -35,6 +35,12 @@
 #    - "truststore.jks"
 #    - "zookeeper.keystore.jks"
 
+- name: checking if the bundle is present in /tmp directory
+  stat: 
+     path: "/tmp/{{ java_agent_jar  }}"
+  delegate_to: 127.0.0.1
+  register: prometheus_java_agent_download
+
 - name: Download the prometheus_java_agent_url
   get_url:
    url: "{{ prometheus_java_agent_url }}"
@@ -46,19 +52,13 @@
 - name: checking if the prometheus_java_agent_url is in etc directory
   stat: 
      path: "{{ kafka_etc_dir }}/{{ java_agent_jar }}"
-  register: prometheus_java_agent_download
+  register: prometheus_java_agent_copy
 
 - name: copy the confluent etc to the location on remote machine
   copy:
     src: "/tmp/{{ java_agent_jar }}"
     dest: "{{ kafka_etc_dir }}"
-  when: confluent_bundle_status.stat.exists == false
-
-- name: copy the confluent etc to the location on remote machine
-  copy:
-    src: "/tmp/{{ java_agent_jar }}"
-    dest: "{{ kafka_etc_dir }}"
-  when: confluent_bundle_status.stat.exists == false
+  when: prometheus_java_agent_copy.stat.exists == false
 
 - name: Deploy JMX Exporter Config File
   copy:
