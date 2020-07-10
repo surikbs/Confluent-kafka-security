@@ -73,3 +73,22 @@
     mode: 0400
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
+
+- name: Download the tar ball from the confluent website
+  get_url:
+   url: "{{ prometheus_java_agent_url }}"
+   dest: "/tmp"
+  delegate_to: 127.0.0.1
+  become: yes
+  when: prometheus_java_agent_download.stat.exists == false
+
+- name: checking if the bundle is present in confluent bundle directory
+  stat: 
+     path: "{{ kafka_etc_dir }}/jmx_prometheus_javaagent-0.13.0.jar"
+  register: prometheus_java_agent_download
+
+- name: copy the confluent bundle to the location on remote machine
+  copy:
+    src: "/tmp/jmx_prometheus_javaagent-0.13.0.jar"
+    dest: "{{ kafka_etc_dir }}"
+  when: confluent_bundle_status.stat.exists == false

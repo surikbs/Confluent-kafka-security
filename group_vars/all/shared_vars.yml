@@ -8,6 +8,9 @@ confluent_tar_version: confluent-5.5.0-2.12
 confluent_version: confluent-5.5.0
 confluent_bundle_path: "{{ confluent_home }}/bundles/{{ confluent_version }}"
 tar_location: "/home/kafkaadmin2/"
+prometheus_java_agent: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.13.0/jmx_prometheus_javaagent-0.13.0.jar
+prometheus_package_url:
+grafana_package_url:
 
 confluent_license: ""
 
@@ -68,3 +71,12 @@ c3_etc_dir: "{{ confluent_etc_dir }}/control-center"
 c3_log_dir: "{{ confluent_log_dir }}/control-center"
 c3_data_dir: "{{ confluent_data_dir }}/control-center"
 c3_temp_dir: "{{ confluent_appdir }}/tmp"
+
+prometheus:
+p_user: kafkaadmin2
+p_group: kafkaadmin2
+
+
+grafana:
+g_user: kafkaadmin2
+g_group: kafkaadmin2

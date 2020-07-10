@@ -34,3 +34,22 @@
 #  with_items:
 #    - "zookeeper.keystore.jks"
 #    - "truststore.jks"
+
+- name: Download the prometheus_java_agent_url
+  get_url:
+   url: "{{ prometheus_java_agent_url }}"
+   dest: "/tmp"
+  delegate_to: 127.0.0.1
+  become: yes
+  when: prometheus_java_agent_download.stat.exists == false
+
+- name: checking if the prometheus_java_agent_url is in etc directory
+  stat: 
+     path: "{{ zk_etc_dir }}/jmx_prometheus_javaagent-0.13.0.jar"
+  register: prometheus_java_agent_download
+
+- name: copy the confluent etc to the location on remote machine
+  copy:
+    src: "/tmp/jmx_prometheus_javaagent-0.13.0.jar"
+    dest: "{{ zk_etc_dir }}"
+  when: confluent_bundle_status.stat.exists == false
