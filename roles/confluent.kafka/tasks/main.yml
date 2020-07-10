@@ -26,11 +26,11 @@
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
 
-- name: copy truststore and keystore to the config directory
-  copy:
-    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
-    dest: "{{ kafka_etc_dir }}"
-  with_items:
-    - "broker-server.keystore.jks"
-    - "truststore.jks"
-    - "zookeeper.keystore.jks"
+#- name: copy truststore and keystore to the config directory
+#  copy:
+#    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
+#    dest: "{{ kafka_etc_dir }}"
+#  with_items:
+#    - "broker-server.keystore.jks"
+#    - "truststore.jks"
+#    - "zookeeper.keystore.jks"

@@ -1,13 +1,13 @@
-confluent_user: vcs_kafka
-confluent_group: vcs_kafka
-confluent_user_home: /home/vcs_kafka
+confluent_user: kafkaadmin2
+confluent_group: kafkaadmin2
+confluent_user_home: /home/kafkaadmin2
 confluent_home: /opt/vcs/kafka
 confluent_appdir: "{{ confluent_home }}/confluent"
 confluent_package_url: http://packages.confluent.io/archive/5.5/confluent-5.5.0-2.12.tar.gz
 confluent_tar_version: confluent-5.5.0-2.12
 confluent_version: confluent-5.5.0
 confluent_bundle_path: "{{ confluent_home }}/bundles/{{ confluent_version }}"
-tar_location: "/home/vcs_kafka/"
+tar_location: "/home/kafkaadmin2/"
 
 confluent_license: ""
 
@@ -18,8 +18,8 @@ confluent_data_dir: "{{ confluent_appdir }}/dataDir"
 zookeeper:
 zk_port: 2181
 zk_ssl_port: 2182
-zk_user: vcs_kafka
-zk_group: vcs_kafka
+zk_user: kafkaadmin2
+zk_group: kafkaadmin2
 zk_bin_dir: "{{ confluent_appdir }}/bin"
 zk_etc_dir: "{{ confluent_etc_dir }}/zk"
 zk_log_dir: "{{ confluent_log_dir }}/zk"
@@ -28,8 +28,8 @@ zk_data_dir: "{{ confluent_data_dir }}/zk"
 kafka_broker:
 kafka_port: 9092
 kafka_ssl_port: 9093
-kafka_user: vcs_kafka
-kafka_group: vcs_kafka
+kafka_user: kafkaadmin2
+kafka_group: kafkaadmin2
 kafka_bin_dir: "{{ confluent_appdir }}/bin"
 kafka_etc_dir: "{{ confluent_etc_dir }}/kafka"
 kafka_data_dir: "{{ confluent_data_dir }}/kafka"
@@ -44,24 +44,24 @@ kafka_connect_log_dir: "{{ confluent_log_dir }}/kafka_connect"
 
 ksql:
 ksql_port: 8088
-ksql_user: vcs_kafka
-ksql_group: vcs_kafka
+ksql_user: kafkaadmin2
+ksql_group: kafkaadmin2
 ksql_bin_dir: "{{ confluent_appdir }}/bin"
 ksql_etc_dir: "{{ confluent_etc_dir }}/ksql"
 ksql_log_dir: "{{ confluent_log_dir }}/ksql"
 ksql_data_dir: "{{ confluent_data_dir }}/ksql"
 
 confluent_cli:
-confluent_cli_user: vcs_kafka
-confluent_cli_group: vcs_kafka
+confluent_cli_user: kafkaadmin2
+confluent_cli_group: kafkaadmin2
 confluent_cli_url: "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/latest/confluent_latest_linux_amd64.tar.gz"
 confluent_cli_package_name: confluent_latest_linux_amd64.tar.gz
 confluent_cli_bundle: "{{ confluent_home }}/bundles"
 confluent_cli_bin: "{{ confluent_home }}/bin"
 
 confluent_control_center:
-c3_user: vcs_kafka
-c3_group: vcs_kafka
+c3_user: kafkaadmin2
+c3_group: kafkaadmin2
 c3_port: 9021
 c3_bin_dir: "{{ confluent_appdir }}/bin"
 c3_etc_dir: "{{ confluent_etc_dir }}/control-center"

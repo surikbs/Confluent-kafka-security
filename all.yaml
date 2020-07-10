@@ -1,11 +1,11 @@
-# - name: Server Setup
-#   hosts: all
-#   gather_facts: no
-#   tags:
-#     - common
-#   tasks:
-#     - import_role:
-#         name: confluent.common
+- name: Server Setup
+  hosts: all
+  gather_facts: no
+  tags:
+    - common
+  tasks:
+    - import_role:
+        name: confluent.common
 
 - name: Zookeeper Provisioning
   hosts: zookeeper
@@ -43,14 +43,14 @@
 #   - import_role:
 #       name: confluent.ksql
 
-- name: Confluent CLI provisioning
-  hosts: confluent_cli
-  gather_facts: no
-  tags:
-    - confluent_cli
-  tasks:
-  - import_role:
-      name: confluent.cli
+#- name: Confluent CLI provisioning
+#  hosts: confluent_cli
+#  gather_facts: no
+#  tags:
+#    - confluent_cli
+#  tasks:
+#  - import_role:
+#      name: confluent.cli
 
 - name: Confluent CLI provisioning
   hosts: c3

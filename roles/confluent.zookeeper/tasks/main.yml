@@ -27,10 +27,10 @@
     group: "{{ zk_group }}"
   register: zookeeper_config
 
-- name: copy truststore and keystore to the config directory
-  copy:
-    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
-    dest: "{{ zk_etc_dir }}"
-  with_items:
-    - "zookeeper.keystore.jks"
-    - "truststore.jks"
+#- name: copy truststore and keystore to the config directory
+#  copy:
+#    src: "{{ playbook_dir }}/tls/certs/{{ item }}"
+#    dest: "{{ zk_etc_dir }}"
+#  with_items:
+#    - "zookeeper.keystore.jks"
+#    - "truststore.jks"

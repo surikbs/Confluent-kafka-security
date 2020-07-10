@@ -1,3 +1,9 @@
+- name: install java
+  yum:
+    name: java
+    state: latest
+  become: yes
+
 - name: Generic folder structure creation
   file:
     state: directory
@@ -9,6 +15,7 @@
     - "{{ confluent_appdir }}"
     - "{{ confluent_appdir }}/bundles"
     - "{{ confluent_appdir }}/etc"
+  delay: 15
 
 - name: checking if the bundle is present in /tmp directory
   stat: 
@@ -21,6 +28,7 @@
    url: "{{ confluent_package_url }}"
    dest: "/tmp"
   delegate_to: 127.0.0.1
+  become: yes
   when: bundle_download_status.stat.exists == false
 
 - name: checking if the bundle is present in confluent bundle directory
