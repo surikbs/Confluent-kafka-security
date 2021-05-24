@@ -1,3 +1,9 @@
+# - name: Add the user 'confluent users' with a bash shell
+#   ansible.builtin.user:
+#     name: "{{ confluent_user }}"
+#     shell: /bin/bash
+# #    groups: "{{ confluent_group }}"
+
 - name: Generic folder structure creation
   file:
     state: directory

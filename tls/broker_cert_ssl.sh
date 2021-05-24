@@ -19,4 +19,6 @@ keytool -importkeystore -deststorepass test1234 -destkeystore certs/broker-serve
     -noprompt \
     -srcstorepass test1234
 
+sh zookeeper_cert_ssl.sh 
+
 keytool -keystore certs/truststore.jks -alias CARoot -import -file certs/ca.crt -storepass test1234  -noprompt -storetype PKCS12 
